@@ -1,0 +1,177 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --purple: #7c3aed;
+  --purple2: #a855f7;
+  --bg: #0a0a0f;
+  --card: #111118;
+  --border: #1e1e2e;
+  --text: #e0e0e0;
+  --muted: #555;
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #eab308;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+}
+
+header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 { color: var(--purple2); font-size: 1.1rem; letter-spacing: 2px; }
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: bold;
+}
+.badge.running { background: #16a34a22; color: var(--green); border: 1px solid #16a34a44; }
+.badge.stopped { background: #dc262622; color: var(--red); border: 1px solid #dc262644; }
+
+.logout { color: var(--muted); text-decoration: none; font-size: .8rem; }
+.logout:hover { color: var(--red); }
+
+main {
+  padding: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.card h2 {
+  font-size: .8rem;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.label {
+  display: block;
+  font-size: .75rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: .85rem;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: .15s;
+}
+.btn-green  { background: #16a34a; color: #fff; }
+.btn-green:hover  { background: #15803d; }
+.btn-red    { background: #dc2626; color: #fff; }
+.btn-red:hover    { background: #b91c1c; }
+.btn-yellow { background: #ca8a04; color: #fff; }
+.btn-yellow:hover { background: #a16207; }
+.btn-purple { background: var(--purple); color: #fff; }
+.btn-purple:hover { background: #6d28d9; }
+.btn-gray   { background: #1e1e2e; color: var(--text); border: 1px solid #333; }
+.btn-gray:hover   { background: #2a2a3e; }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+
+#console {
+  background: #050508;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  height: 280px;
+  overflow-y: auto;
+  padding: 12px;
+  font-size: .75rem;
+  line-height: 1.6;
+}
+.log-out { color: #a5f3fc; }
+.log-err { color: #fca5a5; }
+.log-sys { color: #c4b5fd; }
+
+input[type=text], input[type=password] {
+  background: #050508;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: .85rem;
+  outline: none;
+  width: 100%;
+}
+input:focus { border-color: var(--purple); }
+
+.row { display: flex; gap: 8px; }
+.row input { flex: 1; }
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #050508;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: .8rem;
+}
+.file-name { color: #a5f3fc; }
+.file-size { color: var(--muted); font-size: .7rem; }
+.del-btn { background: none; border: none; color: var(--red); cursor: pointer; font-size: .9rem; padding: 0 4px; }
+
+.drop-zone {
+  border: 2px dashed #333;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: .85rem;
+  cursor: pointer;
+  transition: .15s;
+}
+.drop-zone:hover, .drop-zone.drag { border-color: var(--purple); color: var(--purple2); }
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1e1e2e;
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: .85rem;
+  opacity: 0;
+  transition: .3s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; }
