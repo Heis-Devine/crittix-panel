@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Crittix Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>💀 CRITTIX PANEL</h1>
+  <div style="display:flex;align-items:center;gap:14px">
+    <span class="badge stopped" id="statusBadge">STOPPED</span>
+    <a href="/logout" class="logout">logout</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <h2>Bot Controls</h2>
+    <div style="margin-bottom:12px">
+      <label class="label">START COMMAND</label>
+      <div class="row">
+        <input type="text" id="cmdInput" placeholder="node index.js">
+        <button class="btn btn-gray" onclick="saveCmd()">Save</button>
+      </div>
+    </div>
+    <div class="btns">
+      <button class="btn btn-green" id="startBtn" onclick="control('start')">▶ START</button>
+      <button class="btn btn-red" id="stopBtn" onclick="control('stop')" disabled>■ STOP</button>
+      <button class="btn btn-yellow" id="restartBtn" onclick="control('restart')" disabled>↺ RESTART</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Console Output</h2>
+    <div id="console"></div>
+    <div style="margin-top:8px">
+      <button class="btn btn-gray" onclick="clearConsole()" style="font-size:.75rem;padding:6px 14px">Clear</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Install Dependencies</h2>
+    <div class="row">
+      <input type="text" id="pkgInput" placeholder="Leave empty for npm install, or type: express axios">
+      <button class="btn btn-purple" onclick="installPkg()">Install</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>File Upload</h2>
+    <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+      📁 Click or drag files here<br>
+      <span style="font-size:.75rem">ZIP files will be auto-extracted</span>
+    </div>
+    <input type="file" id="fileInput" style="display:none" multiple onchange="uploadFiles(this.files)">
+  </div>
+
+  <div class="card">
+    <h2>
+      Files in Bot Directory
+      <button class="btn btn-gray" onclick="loadFiles()" style="font-size:.7rem;padding:4px 10px;margin-left:8px">Refresh</button>
+    </h2>
+    <div class="file-list" id="fileList"></div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+  </html>
+  
